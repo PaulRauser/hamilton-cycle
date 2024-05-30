@@ -7,36 +7,41 @@ import pprint
 
 
 
-adjacency_matrix = []
-all_circles_list = []
+
 
 
 
 def hamilton_all(word):
+    adjacency_matrix = []
+    all_circles_list = []
+
     word_len = len(word)
 
     # ((n-1) * n) / 2 = word_len - Umgeformt nach n (dimension)
     dimensions = int(((1 + math.sqrt(1 + 8 * word_len)) / 2))
 
     all_circles = True
-    start_hamilton_cycle(get_adjacency_matrix(word, dimensions), all_circles, dimensions)
+    start_hamilton_cycle(get_adjacency_matrix(word, dimensions, adjacency_matrix), all_circles, dimensions, all_circles_list)
     # print("Done, List: ", all_circles_list)
     return all_circles_list
 
 def hamilton_one(word):
+    adjacency_matrix = []
+    all_circles_list = []
+
     word_len = len(word)
 
     # ((n-1) * n) / 2 = word_len - Umgeformt nach n (dimension)
     dimensions = int(((1 + math.sqrt(1 + 8 * word_len)) / 2))
 
     all_circles = False
-    if start_hamilton_cycle(get_adjacency_matrix(word, dimensions), all_circles, dimensions) is None:
+    if start_hamilton_cycle(get_adjacency_matrix(word, dimensions, adjacency_matrix), all_circles, dimensions, all_circles_list) is None:
         return False
     else:
         return True
 
 
-def get_adjacency_matrix(word, dimensions):
+def get_adjacency_matrix(word, dimensions, adjacency_matrix):
     start = 0
     for i in reversed(range(dimensions - 1)):
         adjacency_matrix.append(list(word[start:start + i + 1]))
@@ -77,7 +82,7 @@ def get_neighbor_nodes(row: int, m):
 
 
 
-def start_hamilton_cycle(m, all_circles, dimensions):
+def start_hamilton_cycle(m, all_circles, dimensions, all_circles_list):
     connected_nodes = []
 
     neighbors = get_neighbor_nodes(0, m) # Get Neighbours of startnode
@@ -86,12 +91,12 @@ def start_hamilton_cycle(m, all_circles, dimensions):
         connected_nodes.append([0, neighbor]) # create Array with path
         # [[0, 1], [0, 2]]
 
-    return get_hamilton_cycle(connected_nodes, m, all_circles, dimensions)
+    return get_hamilton_cycle(connected_nodes, m, all_circles, dimensions, all_circles_list)
 
 
 
 
-def get_hamilton_cycle(connected_nodes, m, all_circles, dimensions):
+def get_hamilton_cycle(connected_nodes, m, all_circles, dimensions, all_circles_list):
     if connected_nodes:
         # print("Next run: Connected Nodes", connected_nodes)
         next_connected_nodes = []
@@ -132,7 +137,7 @@ def get_hamilton_cycle(connected_nodes, m, all_circles, dimensions):
 
                         next_connected_nodes.append(node + [neighbor])
 
-        return get_hamilton_cycle(next_connected_nodes, m, all_circles, dimensions)
+        return get_hamilton_cycle(next_connected_nodes, m, all_circles, dimensions, all_circles_list)
 
 
     #Rückgabe meherer Arrays, immer den letzen Wert nehmen und schauen ob ein Node noch nicht im Array ist
