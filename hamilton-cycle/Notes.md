@@ -28,11 +28,12 @@ KN4           KN5
 
 
 **Darstellung als Adjazenzmatrix** \
-0 1 1 0 0 \
-_ 0 1 1 1 \
-_ _ 0 1 1 \
-_ _ _ 0 1 \
-_ _ _ _ 0
+    1 2 3 4 5
+kn1 0 1 1 0 0 \
+kn2 _ 0 1 1 1 \
+kn3 _ _ 0 1 1 \
+kn4 _ _ _ 0 1 \
+kn5 _ _ _ _ 0 \
 
 **Darstellung als Wort**
 Nikolaus haus = 1100111111
