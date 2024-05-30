@@ -1,0 +1,24 @@
+# Ignore .DS_Store files (macOS)
+.DS_Store
+
+# Ignore system files (Windows)
+Thumbs.db
+Desktop.ini
+
+# Ignore system files (Linux)
+*~
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore node_modules folder (Node.js projects)
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
