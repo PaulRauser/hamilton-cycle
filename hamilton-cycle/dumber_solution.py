@@ -20,12 +20,22 @@ all_circles_list = []
 
 
 def hamilton_all(word):
+    word_len = len(word)
+
+    # ((n-1) * n) / 2 = word_len - Umgeformt nach n (dimension)
+    dimensions = int(((1 + math.sqrt(1 + 8 * word_len)) / 2))
+
     all_circles = True
     start_hamilton_cycle(get_adjacency_matrix(word), all_circles)
     # print("Done, List: ", all_circles_list)
     return all_circles_list
 
 def hamilton_one(word):
+    word_len = len(word)
+
+    # ((n-1) * n) / 2 = word_len - Umgeformt nach n (dimension)
+    dimensions = int(((1 + math.sqrt(1 + 8 * word_len)) / 2))
+
     all_circles = False
     if start_hamilton_cycle(get_adjacency_matrix(word), all_circles) is None:
         return False
